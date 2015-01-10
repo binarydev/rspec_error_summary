@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-    $ ruby rspec-counter.rb [options]
+    $ rspec_error_summary [options]
     
     -p, --path [ARG]                 
     Path to the directory of spec files or individual spec file to be tested
