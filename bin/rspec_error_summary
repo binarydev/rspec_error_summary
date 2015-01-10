@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require 'rspec_error_summary'
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: ruby rspec-counter.rb [options]"
+
+  opts.on("-p [ARG]", "--path [ARG]", "Path to the directory of spec files or individual spec file to be tested") do |p|
+    options[:path] = p
+  end
+
+  opts.on("-s [ARG]", "--search [ARG]", "Search for a specific string of text in the error message") do |s|
+    options[:search] = s
+  end
+
+  options[:verbose] = false
+  opts.on("-v", "--verbose", "Verbose output. Displays full error messages") do |s|
+    options[:verbose] = true
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end.parse!
+
+RspecErrorSummary::Parser.parse_spec_report(options)
