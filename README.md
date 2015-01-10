@@ -1,6 +1,6 @@
 # RspecErrorSummary
 
-TODO: Write a gem description
+Parses RSpec error output to provide a summary showing what errors were encountered, the number of occurrences per error, and file path and line number locations.
 
 ## Installation
 
@@ -20,7 +20,19 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ ruby rspec-counter.rb [options]
+    
+    -p, --path [ARG]                 
+    Path to the directory of spec files or individual spec file to be tested
+    
+    -s, --search [ARG]               
+    Search for a specific string of text in the error message
+    
+    -v, --verbose                    
+    Verbose output. Displays full error messages
+    
+    -h, --help                       
+    Show this message
 
 ## Contributing
 
