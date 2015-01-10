@@ -1,4 +1,4 @@
-# RspecErrorSummary
+# RSpec Error Summary
 
 Parses RSpec error output to provide a summary showing what errors were encountered, the number of occurrences per error, and file path and line number locations.
 
