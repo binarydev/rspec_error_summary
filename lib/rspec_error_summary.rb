@@ -37,10 +37,14 @@ module RspecErrorSummary
 
       failure_messages = failed_tests.map do |test| 
         # Consume the failed tests and provide a more simplified hash with just the required info
+
+        # Strip out the line breaks and replace standard space indents with tabs
         msg = test[:exception][:message].gsub("\n", " ").gsub("     ", "\n\t\t  ").strip
         test_split = msg.split("#<")
         
-        if(test_split.count > 1 && test_split[0] != "")
+        if(test_split.count > 1 && test_split[0] != "" && !options[:verbose])
+          # Indicate that there is more to the message to be seen using the verbose flag
+          # or by running rspec manually on the affected files
           msg = test_split[0] + "..."
         end
 
@@ -49,6 +53,7 @@ module RspecErrorSummary
           file_path: test[:file_path],
           line_number: test[:line_number]
         }
+        
       end
 
       uniq_failure_messages = failure_messages.uniq { |test| test[:message] }
@@ -70,11 +75,11 @@ module RspecErrorSummary
 
       end
 
+      # Sort by number of occurrences in descending order
       uniq_failure_messages_for_output.sort!{ |a,b|  b[:count].to_i <=> a[:count].to_i }
 
       # Empty space between any normal RSpec output and our custom text
-      puts " "
-      puts " "
+      puts "\n\n"
       puts "Failure message report:"
       if uniq_failure_messages_for_output.count == 0
         puts ("Either no failures in the specified tests, or the desired error you entered could not be found in the results").colorize(:green)
@@ -91,8 +96,7 @@ module RspecErrorSummary
           end
         end
       end
-      puts " "
-      puts " "
+      puts "\n\n"
      
     end
   end
