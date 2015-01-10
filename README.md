@@ -22,14 +22,17 @@ Or install it yourself as:
 
     $ rspec_error_summary [options]
     
-    -p, --path [ARG]                 
+    -p, --path [ARG]
+    Default: "./spec/"        
     Path to the directory of spec files or individual spec file to be tested
     
-    -s, --search [ARG]               
+    -s, --search [ARG]
     Search for a specific string of text in the error message
     
-    -v, --verbose                    
-    Verbose output. Displays full error messages
+    -v, --verbose               
+    Verbose output. Displays full error messages. By default, error messages are truncated to 140 characters. Any object representations ("<#Model:0x3fdddd8b036c>") in the messages are also truncated to avoid confusion when counting the number of occurrences, as these objects will have different memory addresses, despite having the same error
+
+    e.g. "Undefined method 'test' for <#Model:0x3fdddd8b036c>" will not be considered another occurrence of the error "Undefined method 'test' for <#Model:0x2bdecb8b026a>" due to mismatching memory addresses, even though the cause of the error is the same.
     
     -h, --help                       
     Show this message
