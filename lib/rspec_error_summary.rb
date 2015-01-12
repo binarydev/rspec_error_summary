@@ -80,7 +80,10 @@ module RspecErrorSummary
 
       # Empty space between any normal RSpec output and our custom text
       puts "\n\n"
-      puts "Failure message report:"
+      puts "Failure message report:\n\n"
+      puts "Total # of failures: #{ failed_tests.count.to_s.colorize(:red) }"
+      puts "Total # of unique errors: #{ uniq_failure_messages_for_output.count.to_s.colorize(:red) }\n\n"
+
       if uniq_failure_messages_for_output.count == 0
         puts ("Either no failures in the specified tests, or the desired error you entered could not be found in the results").colorize(:green)
       else
