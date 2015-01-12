@@ -1,5 +1,7 @@
 # RSpec Error Summary
 
+[![Gem Version](https://badge.fury.io/rb/rspec_error_summary.svg)](http://badge.fury.io/rb/rspec_error_summary)
+
 Parses RSpec error output to provide a summary showing what errors were encountered, the number of occurrences per error, and file path and line number locations.
 
 ## Installation
